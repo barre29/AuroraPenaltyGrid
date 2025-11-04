@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Aurora theme - Deep space background */
+    --background: 222 75% 3%;
+    --foreground: 210 100% 98%;
+
+    /* Card surfaces with subtle aurora glow */
+    --card: 222 65% 6%;
+    --card-foreground: 210 100% 98%;
+
+    --popover: 222 65% 6%;
+    --popover-foreground: 210 100% 98%;
+
+    /* Aurora cyan as primary */
+    --primary: 187 100% 60%;
+    --primary-foreground: 222 75% 3%;
+
+    /* Secondary surfaces */
+    --secondary: 222 55% 12%;
+    --secondary-foreground: 210 100% 98%;
+
+    --muted: 222 55% 12%;
+    --muted-foreground: 210 40% 65%;
+
+    --accent: 222 55% 15%;
+    --accent-foreground: 210 100% 98%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 210 100% 98%;
+
+    /* Aurora theme borders */
+    --border: 222 45% 15%;
+    --input: 222 45% 15%;
+    --ring: 187 100% 60%;
+
+    --radius: 0.75rem;
+
+    /* Aurora specific colors */
+    --aurora-cyan: 187 100% 60%;
+    --aurora-cyan-glow: 187 100% 70%;
+    --aurora-orange: 18 100% 65%;
+    --aurora-orange-glow: 18 100% 75%;
+    --aurora-purple: 270 80% 65%;
+    --aurora-green: 150 80% 60%;
+    
+    /* Semantic colors for Goal/Save */
+    --goal: 187 100% 60%;
+    --goal-foreground: 222 75% 3%;
+    --goal-glow: 187 100% 70%;
+    
+    --save: 18 100% 65%;
+    --save-foreground: 222 75% 3%;
+    --save-glow: 18 100% 75%;
+
+    /* Gradients */
+    --gradient-aurora: linear-gradient(135deg, hsl(187 100% 60% / 0.2), hsl(270 80% 65% / 0.2), hsl(18 100% 65% / 0.2));
+    --gradient-goal: linear-gradient(135deg, hsl(187 100% 60%), hsl(187 100% 70%));
+    --gradient-save: linear-gradient(135deg, hsl(18 100% 65%), hsl(18 100% 75%));
+
+    /* Shadows with aurora glow */
+    --shadow-aurora: 0 0 40px hsl(187 100% 60% / 0.3);
+    --shadow-goal: 0 0 30px hsl(187 100% 60% / 0.4);
+    --shadow-save: 0 0 30px hsl(18 100% 65% / 0.4);
+  }
+}
+
+/* Aurora animations */
+@keyframes aurora-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes aurora-ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes aurora-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(187 100% 60% / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(187 100% 60% / 0.6);
+  }
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
