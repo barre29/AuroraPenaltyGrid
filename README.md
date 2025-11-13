@@ -12,8 +12,24 @@
 
 ---
 
+## 🎥 Demo Video
+
+**Watch the full demo showcasing the encrypted betting experience:**
+
+👉 **[Download Demo Video (test_bet.mp4)](./test_bet.mp4)** 👈
+
+The demo video demonstrates:
+- 🔐 Creating a penalty shootout with encrypted predictions
+- 🎯 Placing bets with confidence weights (1-100)
+- 🎲 Settlement using on-chain randomness
+- 💰 Prize claiming for winners
+- 🔒 Complete privacy throughout the entire process
+
+---
+
 ## 📑 Table of Contents
 
+- [Demo Video](#-demo-video)
 - [Overview](#-overview)
 - [Key Features](#-key-features)
 - [How It Works](#-how-it-works)

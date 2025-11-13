@@ -6,16 +6,30 @@ let fheInstance: any = null;
  * Get SDK from window (loaded via static script tag in HTML)
  * SDK 0.3.0-5 is loaded via static script tag in index.html
  */
-const getSDK = (): any => {
+const getSDK = async (): Promise<any> => {
   if (typeof window === 'undefined') {
     throw new Error('FHE SDK requires browser environment');
   }
 
   // Check for both uppercase and lowercase versions
-  const sdk = (window as any).RelayerSDK || (window as any).relayerSDK;
+  let sdk = (window as any).RelayerSDK || (window as any).relayerSDK;
+
+  // If SDK is not available, wait for it to load (max 10 seconds)
+  if (!sdk) {
+    console.log('[FHE] SDK not immediately available, waiting...');
+
+    for (let i = 0; i < 100; i++) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+      sdk = (window as any).RelayerSDK || (window as any).relayerSDK;
+      if (sdk) {
+        console.log('[FHE] SDK loaded after', (i + 1) * 100, 'ms');
+        break;
+      }
+    }
+  }
 
   if (!sdk) {
-    throw new Error('RelayerSDK not loaded. Please ensure the script tag is in your HTML.');
+    throw new Error('RelayerSDK not loaded after 10 seconds. Please refresh the page.');
   }
 
   return sdk;
@@ -42,7 +56,7 @@ export const initializeFHE = async (provider?: any): Promise<any> => {
 
   console.log('[FHE] Initializing FHE SDK...');
 
-  const sdk = getSDK();
+  const sdk = await getSDK();
   const { initSDK, createInstance, SepoliaConfig } = sdk;
 
   console.log('[FHE] SDK found, calling initSDK()...');
